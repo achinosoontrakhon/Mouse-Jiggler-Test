@@ -12,6 +12,8 @@ jobs:
           python-version: '3.12'
       - run: pip install rumps pyobjc-framework-Quartz pyobjc-framework-Cocoa pyinstaller
       - run: pyinstaller --noconfirm MouseJiggler.spec
+      - name: Ad-hoc sign the app
+        run: codesign --force --deep --sign - dist/MouseJiggler.app
       - name: Smoke test (prints errors if the app crashes on launch)
         continue-on-error: true
         run: |
